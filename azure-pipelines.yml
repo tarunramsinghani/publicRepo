@@ -1,0 +1,23 @@
+# Sample Azure DevOps pipeline (CI + PR validation)
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: echo "Hello from Azure Pipelines!"
+    displayName: Say hello
+
+  - script: |
+      echo "Build reason: $(Build.Reason)"
+      echo "Source branch: $(Build.SourceBranch)"
+      ls -la
+    displayName: Show build info
